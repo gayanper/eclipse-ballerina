@@ -1,13 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <parent>
-    <artifactId>org.gap.eclipse.ballerina</artifactId>
-    <groupId>org.gap.eclipse.ballerina</groupId>
-    <version>1.0.0-SNAPSHOT</version>
-  </parent>
-  <modelVersion>4.0.0</modelVersion>
-  <artifactId>org.gap.eclipse.ballerina.core</artifactId>
-  <packaging>eclipse-plugin</packaging>
-  <name>org.gap.eclipse.ballerina :: core</name>
-  <description>org.gap.eclipse.ballerina Core Plugin</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>org.gap.eclipse.ballerina</artifactId>
+		<groupId>org.gap.eclipse.ballerina</groupId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>org.gap.eclipse.ballerina.core</artifactId>
+	<packaging>eclipse-plugin</packaging>
+	<name>org.gap.eclipse.ballerina :: core</name>
+	<description>org.gap.eclipse.ballerina Core Plugin</description>
+	<properties>
+		<ballerina.version>0.981.0</ballerina.version>
+	</properties>
+	<repositories>
+		<repository>
+			<id>wso2.releases</id>
+			<name>WSO2 Releases Repository</name>
+			<url>http://maven.wso2.org/nexus/content/repositories/releases/</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>ignore</checksumPolicy>
+			</releases>
+		</repository>
+		<repository>
+			<id>wso2.snapshots</id>
+			<name>WSO2 Snapshot Repository</name>
+			<url>http://maven.wso2.org/nexus/content/repositories/snapshots/</url>
+			<snapshots>
+				<enabled>false</enabled>
+				<updatePolicy>daily</updatePolicy>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-server</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<overWriteIfNewer>true</overWriteIfNewer>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.ballerinalang</groupId>
+									<artifactId>plugin-vscode-server</artifactId>
+									<version>${ballerina.version}</version>
+									<type>jar</type>
+									<outputDirectory>${basedir}/lib/</outputDirectory>
+									<destFileName>langserver.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -2,53 +2,43 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.ui.commands">
-      <category
-            name="sample category"
-            id="category.sample.id">
-      </category>
-      <command
-            name="sample command"
-            categoryId="category.sample.id"
-            id="command.sample.id">
-      </command>
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            base-type="org.eclipse.core.runtime.text"
+            file-extensions="bal"
+            id="org.gap.eclipse.ballerina.bal"
+            name="Ballerina File"
+            priority="normal">
+      </content-type>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editorContentTypeBinding
+            contentTypeId="org.gap.eclipse.ballerina.bal"
+            editorId="org.eclipse.ui.genericeditor.GenericEditor">
+      </editorContentTypeBinding>
+   </extension>
+   <extension
+         point="org.eclipse.lsp4e.languageServer">
+      <server
+            class="org.gap.eclipse.ballerina.core.server.BallerinaStreamConnectionProvider"
+            id="org.gap.eclipse.ballerina.ballerina"
+            label="Ballerina Lanuage Server Client">
+      </server>
+      <contentTypeMapping
+            contentType="org.gap.eclipse.ballerina.bal"
+            id="org.gap.eclipse.ballerina.ballerina">
+      </contentTypeMapping>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.gap.eclipse.ballerina.core.preference.BallerinaPreferencePage"
+            id="org.gap.eclipse.ballerina.core.preference"
+            name="Ballerina Preference">
+      </page>
    </extension>
 
-   <extension
-         point="org.eclipse.ui.handlers">
-      <handler
-            commandId="command.sample.id"
-            class="org.gap.eclipse.ballerina.core.SampleHandler">
-      </handler>
-   </extension>
 
-   <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            allPopups="false"
-            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
-         <menu
-               id="menu.sample.id"
-               label="Sample &amp;Menu">
-            <command
-                  commandId="command.sample.id"
-                  mnemonic="S"
-                  id="command.sample.menu.memonic.id">
-            </command>
-         </menu>
-      </menuContribution>
-      <menuContribution
-            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
-         <toolbar
-               id="toolbar.sample.id">
-            <command
-                  commandId="command.sample.id"
-                  icon="icons/sample.gif"
-                  tooltip="&amp;sample Sample Action"
-                  id="sampleAction.id">
-            </command>
-         </toolbar>
-      </menuContribution>
-   </extension>
 
 </plugin>

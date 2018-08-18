@@ -13,7 +13,7 @@ public class ActivatorTest {
 
 	@Test
 	public void veryStupidTest() {
-		assertEquals("org.gap.eclipse.ballerina.core",Activator.PLUGIN_ID);
-		assertTrue("Plugin should be started", Activator.getDefault().started);
+		assertEquals("org.gap.eclipse.ballerina.core",BallerinaPlugin.PLUGIN_ID);
+		assertTrue("Plugin should be started", BallerinaPlugin.getDefault().started);
 	}
 }

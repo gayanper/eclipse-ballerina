@@ -3,8 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.gap.eclipse.ballerina Core Plugin
 Bundle-SymbolicName: org.gap.eclipse.ballerina.core;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.gap.eclipse.ballerina.core.Activator
+Bundle-Activator: org.gap.eclipse.ballerina.core.BallerinaPlugin
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.lsp4e
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
