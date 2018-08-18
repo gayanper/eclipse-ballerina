@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="sample category"
+            id="category.sample.id">
+      </category>
+      <command
+            name="sample command"
+            categoryId="category.sample.id"
+            id="command.sample.id">
+      </command>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="command.sample.id"
+            class="org.gap.eclipse.ballerina.core.SampleHandler">
+      </handler>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="menu.sample.id"
+               label="Sample &amp;Menu">
+            <command
+                  commandId="command.sample.id"
+                  mnemonic="S"
+                  id="command.sample.menu.memonic.id">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="toolbar.sample.id">
+            <command
+                  commandId="command.sample.id"
+                  icon="icons/sample.gif"
+                  tooltip="&amp;sample Sample Action"
+                  id="sampleAction.id">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+
+</plugin>

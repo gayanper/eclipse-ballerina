@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.gap.eclipse.ballerina.feature_0.0.0.jar" id="org.gap.eclipse.ballerina.feature" version="0.0.0">
+    <category name="org.gap.eclipse.ballerina"/>
+   </feature>
+   <feature url="features/org.gap.eclipse.ballerina.feature.source_0.0.0.jar" id="org.gap.eclipse.ballerina.feature.source" version="0.0.0">
+    <category name="org.gap.eclipse.ballerina Developer Resources"/>
+   </feature>
+</site>
