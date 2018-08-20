@@ -15,5 +15,7 @@ public class BallerinaPreferencePage extends FieldEditorPreferencePage implement
 	@Override
 	protected void createFieldEditors() {
 		addField(new DirectoryFieldEditor(Preferences.SDK_HOME, "Ballerina SDK Home", getFieldEditorParent()));
+		addField(new DirectoryFieldEditor(Preferences.BALLERINA_JAVE_HOME, "Ballerina Java Home",
+				getFieldEditorParent()));
 	}
 }

@@ -38,7 +38,23 @@
             name="Ballerina Preference">
       </page>
    </extension>
-
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="org.gap.eclipse.ballerina.core.launching.BallerinaApplicationLaunchConfigurationDelegate"
+            id="org.gap.eclipse.ballerina.launching.BallerinaApplication"
+            name="Ballerina Application" modes="run">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="org.gap.eclipse.ballerina.core.launching.BallerinaLaunchTabGroup"
+            id="org.gap.eclipse.ballerina.launching.launchConfigurationTabGroup"
+            type="org.gap.eclipse.ballerina.launching.BallerinaApplication">
+      </launchConfigurationTabGroup>
+   </extension>
+	
 
 
 </plugin>

@@ -3,6 +3,7 @@ package org.gap.eclipse.ballerina.core;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.gap.eclipse.ballerina.core.preference.BallerinaPreferenceStore;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -17,6 +18,8 @@ public class BallerinaPlugin extends AbstractUIPlugin {
 	private static BallerinaPlugin plugin;
 	
 	boolean started;
+
+	private BallerinaPreferenceStore ballerinaPreferenceStore;
 	/**
 	 * The constructor
 	 */
@@ -31,6 +34,7 @@ public class BallerinaPlugin extends AbstractUIPlugin {
 		super.start(context);
 		plugin  = this;
 		started = true;
+		ballerinaPreferenceStore = new BallerinaPreferenceStore(plugin);
 	}
 
 	/*
@@ -65,5 +69,13 @@ public class BallerinaPlugin extends AbstractUIPlugin {
 	
 	public void logError(String message) {
 		getLog().log(new Status(Status.ERROR, PLUGIN_ID, message));
+	}
+
+	public void logError(Throwable t) {
+		getLog().log(new Status(Status.ERROR, PLUGIN_ID, t.getMessage(), t));
+	}
+	
+	public BallerinaPreferenceStore getBallerinaPreferenceStore() {
+		return ballerinaPreferenceStore;
 	}
 }

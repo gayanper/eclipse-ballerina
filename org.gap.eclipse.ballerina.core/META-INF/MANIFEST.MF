@@ -6,6 +6,10 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.gap.eclipse.ballerina.core.BallerinaPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.lsp4e
+ org.eclipse.lsp4e,
+ org.eclipse.debug.core,
+ org.eclipse.debug.ui,
+ org.eclipse.ui.ide;bundle-version="3.14.100",
+ org.eclipse.jdt.debug.ui;bundle-version="3.10.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

@@ -10,7 +10,6 @@ import java.util.Collections;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.lsp4e.server.ProcessOverSocketStreamConnectionProvider;
 import org.gap.eclipse.ballerina.core.BallerinaPlugin;
-import org.gap.eclipse.ballerina.core.preference.Preferences;
 
 public class BallerinaStreamConnectionProvider extends ProcessOverSocketStreamConnectionProvider {
 
@@ -23,13 +22,13 @@ public class BallerinaStreamConnectionProvider extends ProcessOverSocketStreamCo
 	public BallerinaStreamConnectionProvider(BallerinaPlugin ballerinaPlugin, int[] ports) throws IOException {
 		super(Collections.emptyList(), "", ports[0]);
 
-		final String sdkPath = getSdkHome(ballerinaPlugin);
-		if(sdkPath != null) {
+		if (ballerinaPlugin.getBallerinaPreferenceStore().isSdkHomeValid()) {
 			this.validSDK = true;
 		} else {
 			return;
 		}
 		
+		final String sdkPath = ballerinaPlugin.getBallerinaPreferenceStore().getSdkHome();
 		setCommands(Arrays.asList(pathWithJava(System.getProperty("java.home")), "-cp", 
 				classPath(System.getProperty("java.home"), sdkPath), "-Dballerina.home=" + sdkPath,
 				"org.ballerinalang.vscode.server.Main", String.valueOf(ports[0]), String.valueOf(ports[1])));
@@ -89,18 +88,5 @@ public class BallerinaStreamConnectionProvider extends ProcessOverSocketStreamCo
 		for (String path : paths) {
 			builder.append(File.separator).append(path);
 		}
-	}
-
-	private static String getSdkHome(BallerinaPlugin plugin) {
-		final String sdkHomeValue = plugin.getPreferenceStore().getString(Preferences.SDK_HOME);
-		if(sdkHomeValue == null || sdkHomeValue.isEmpty()) {
-			return null;
-		}
-		
-		final File sdkPath = new File(sdkHomeValue);
-		if (sdkPath.exists()) {
-			return sdkPath.getAbsolutePath();
-		}
-		return null;
 	}
 }
