@@ -160,7 +160,9 @@ public class BallerinaLaunchTab extends AbstractLaunchConfigurationTab {
 	public void initializeFrom(ILaunchConfiguration configuration) {
 		try {
 			projectPath.setText(configuration.getAttribute(BallerinaLauchConfiguration.PROEJCT, ""));
-			selectedProject = ResourcesPlugin.getWorkspace().getRoot().getProject(projectPath.getText());
+			if (!projectPath.getText().isEmpty()) {
+				selectedProject = ResourcesPlugin.getWorkspace().getRoot().getProject(projectPath.getText());
+			}
 			ballerinaFile.setText(configuration.getAttribute(BallerinaLauchConfiguration.BAL_FILE, ""));
 		} catch (CoreException e) {
 			BallerinaPlugin.getDefault().logError(e);
